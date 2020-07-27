@@ -1,0 +1,2 @@
+rootProject.name='MarketFriendApp'
+include ':app'
