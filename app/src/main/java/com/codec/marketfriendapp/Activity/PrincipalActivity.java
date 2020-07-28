@@ -66,20 +66,20 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
     }
     public void CalificarComercio()
     {
-        Intent i = new Intent(PrincipalActivity.this, PerfilClienteActivity.class);
+        Intent i = new Intent(PrincipalActivity.this, CalificarComercioActivity.class);
         startActivity(i);
     }
     public void VerMapa(){
-        Intent i = new Intent(PrincipalActivity.this, PerfilClienteActivity.class);
+        Intent i = new Intent(PrincipalActivity.this, VerMapaActivity.class);
         startActivity(i);
     }
     public void ListadoComercio()
     {
-        Intent i = new Intent(PrincipalActivity.this, PerfilClienteActivity.class);
+        Intent i = new Intent(PrincipalActivity.this, ListadoComercioActivity.class);
         startActivity(i);
     }
     public void DetalleComercio(){
-        Intent i = new Intent(PrincipalActivity.this, PerfilClienteActivity.class);
+        Intent i = new Intent(PrincipalActivity.this, DetalleComercioActivity.class);
         startActivity(i);
     }
     //endregion

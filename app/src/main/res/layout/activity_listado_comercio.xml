@@ -4,6 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F9FBFF"
     tools:context=".Activity.ListadoComercioActivity">
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/bgheader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/imagenUsuario"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/userpic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nombreUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Wilhelm Ruiz"
+        android:textColor="#FFF"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="@+id/imagenUsuario"
+        app:layout_constraintStart_toStartOf="@+id/imagenUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/imagenUsuario" />
+
+    <TextView
+        android:id="@+id/billeteraUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:text="CREDITOS: 150 MarketCoins"
+        android:textColor="#fff"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/nombreUsuario"
+        app:layout_constraintStart_toStartOf="@+id/nombreUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/nombreUsuario" />
+
+    <TextView
+        android:id="@+id/tvComercio"
+        style="@style/Theme.AppCompat.Light"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="16dp"
+        android:text="Comercios"
+        android:textSize="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/billeteraUsuario" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="342dp"
+        android:layout_height="408dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvComercio" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
