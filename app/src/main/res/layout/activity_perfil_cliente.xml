@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9FBFF"
+    tools:context=".Activity.PerfilClienteActivity">
+
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/bgheader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imagenUsuario"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/userpic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nombreUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Wilhelm Ruiz"
+        android:textColor="#FFF"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="@+id/imagenUsuario"
+        app:layout_constraintStart_toStartOf="@+id/imagenUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/imagenUsuario" />
+
+    <Button
+        android:id="@+id/btnClasificar"
+        android:layout_width="194dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bgbtnclasifica"
+        android:layout_marginTop="15dp"
+        android:text="Mi Perfil"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/nombreUsuario"
+        app:layout_constraintStart_toStartOf="@+id/nombreUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/nombreUsuario" />
+
+    <TextView
+        android:id="@+id/perfilSetting"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"
+        android:text="Personal"
+        android:textColor="#172646"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgSetting"
+        app:layout_constraintTop_toBottomOf="@+id/btnClasificar" />
+
+    <TextView
+        android:id="@+id/perfilSubSetting"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="Configurar datos personales."
+        android:textColor="#818181"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgSetting"
+        app:layout_constraintTop_toBottomOf="@+id/perfilSetting" />
+
+    <ImageView
+        android:id="@+id/imgSetting"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="38dp"
+        android:src="@drawable/ic_settings_applications_black_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnClasificar" />
+
+    <ImageView
+        android:id="@+id/imgLinea1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/imglinea"
+        app:layout_constraintTop_toBottomOf="@+id/imgSetting"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/comerciosFavoritos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Comercios Favoritos"
+        android:textColor="#172646"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgComercio"
+        app:layout_constraintTop_toBottomOf="@+id/imgLinea1" />
+
+    <TextView
+        android:id="@+id/comerciosSubFavoritos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="Los comercios recomendados."
+        android:textColor="#818181"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgComercio"
+        app:layout_constraintTop_toBottomOf="@+id/comerciosFavoritos" />
+
+    <ImageView
+        android:id="@+id/imgComercio"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_shopping_cart_black_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLinea1" />
+
+    <ImageView
+        android:id="@+id/imgLinea2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/imglinea"
+        app:layout_constraintTop_toBottomOf="@+id/imgComercio"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/txtnuevoComercio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Registrar Nuevo Comercio"
+        android:textColor="#172646"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgNuevoComercio"
+        app:layout_constraintTop_toBottomOf="@+id/imgLinea2" />
+
+    <TextView
+        android:id="@+id/nuevoSubComercio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="Registra un Nuevo Comercio o Punto de Venta."
+        android:textColor="#818181"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgNuevoComercio"
+        app:layout_constraintTop_toBottomOf="@+id/txtnuevoComercio" />
+
+    <ImageView
+        android:id="@+id/imgNuevoComercio"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_note_add_black_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLinea2" />
+
+    <ImageView
+        android:id="@+id/imgLinea3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/imglinea"
+        app:layout_constraintTop_toBottomOf="@+id/imgNuevoComercio"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/txtAyuda"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Ayuda"
+        android:textColor="#172646"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgAyuda"
+        app:layout_constraintTop_toBottomOf="@+id/imgLinea3" />
+
+    <TextView
+        android:id="@+id/nuevoSubAyuda"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="FAQ, tutorial y contacto."
+        android:textColor="#818181"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgAyuda"
+        app:layout_constraintTop_toBottomOf="@+id/txtAyuda" />
+
+    <ImageView
+        android:id="@+id/imgAyuda"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_help_outline_black_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLinea3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

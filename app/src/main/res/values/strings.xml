@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MarketFriendApp</string>
+
+    <string name="my_prompt">Escoge tu categoria</string>
+    <string-array name="spinner">
+        <item>Android</item>
+        <item>iOS</item>
+        <item>Symbian</item>
+        <item>Windows Phone</item>
+    </string-array>
 </resources>
