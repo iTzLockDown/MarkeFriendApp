@@ -8,4 +8,5 @@
         <item>Symbian</item>
         <item>Windows Phone</item>
     </string-array>
+    <string name="title_activity_ver_mapa">Map</string>
 </resources>
