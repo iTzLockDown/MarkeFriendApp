@@ -1,7 +1,7 @@
 package com.codec.marketfriendapp.Response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-public class ListaComercio {
+public class ResponseListaComercio {
 
     @SerializedName("direccion")
     @Expose
@@ -41,7 +41,7 @@ public class ListaComercio {
      * No args constructor for use in serialization
      *
      */
-    public ListaComercio() {
+    public ResponseListaComercio() {
     }
 
     /**
@@ -58,7 +58,7 @@ public class ListaComercio {
      * @param nombre
      * @param calidadProducto
      */
-    public ListaComercio(String direccion, String tiempoAtencion, String nombre, String categoria, String precioProducto, String imagen, Object gpsLatitud, String telefono, String calidadProducto, String codigo, Object gpsLongitud) {
+    public ResponseListaComercio(String direccion, String tiempoAtencion, String nombre, String categoria, String precioProducto, String imagen, Object gpsLatitud, String telefono, String calidadProducto, String codigo, Object gpsLongitud) {
         super();
         this.direccion = direccion;
         this.tiempoAtencion = tiempoAtencion;

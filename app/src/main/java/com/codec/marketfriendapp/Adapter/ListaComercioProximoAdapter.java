@@ -13,15 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.codec.marketfriendapp.Activity.CalificarComercioActivity;
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Response.ListaComercio;
+import com.codec.marketfriendapp.Response.ResponseListaComercio;
 
 import java.util.List;
 
 public class ListaComercioProximoAdapter extends RecyclerView.Adapter<ListaComercioProximoAdapter.MyViewHolder> {
     private Context context;
-    private List<ListaComercio> listaComercio;
+    private List<ResponseListaComercio> listaComercio;
 
-    public ListaComercioProximoAdapter(Context context, List<ListaComercio> listaComercio) {
+    public ListaComercioProximoAdapter(Context context, List<ResponseListaComercio> listaComercio) {
         this.context = context;
         this.listaComercio = listaComercio;
     }

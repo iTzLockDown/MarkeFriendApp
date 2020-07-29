@@ -21,24 +21,38 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.codec.marketfriendapp.R;
+import com.codec.marketfriendapp.Request.RequestRegistroComercio;
+import com.codec.marketfriendapp.Response.ResponseRegistroComercio;
+import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
+import com.codec.marketfriendapp.Retrofit.ServiceRetrofit;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegistroComercioActivity extends AppCompatActivity implements View.OnClickListener  {
     //region Variables y Parametros
 
     ImageView imagenComercio;
-    EditText txtNombre, txtDescripcion,txtDireccion, txtTelefono;
+    EditText tvNombrecomercio, tvDescripcionComercio, tvDireccionComercio, tvTelefonoComercio;
     Button btnRegistrar, btnCargarImagen;
 
     TextView tvLatitud, tvLongitud;
+
+    ClienteRetrofit clienteRetrofit;
+    ServiceRetrofit serviceRetrofit;
+
     //end region
 
     //region Contructores
 
     public void InicializaActivity()
     {
+        retrofitInit();
         RegistroObjeto();
         ListenerObjeto();
         RequierePermidoGPS();
@@ -47,10 +61,21 @@ public class RegistroComercioActivity extends AppCompatActivity implements View.
     //region
 
     //region Metodos
+    private void retrofitInit()
+    {
+        clienteRetrofit = clienteRetrofit.getInstance();
+        serviceRetrofit = clienteRetrofit.getMarketFriendService();
+    }
 
     public void RegistroObjeto()
     {
-        tvLatitud = findViewById(R.id.tvLatidu);
+        tvNombrecomercio = findViewById(R.id.tvNombrecomercio);
+        tvDescripcionComercio= findViewById(R.id.tvDescripcionComercio);
+        tvDireccionComercio= findViewById(R.id.tvDireccionComercio);
+        tvTelefonoComercio= findViewById(R.id.tvTelefonoComercio);
+
+
+        tvLatitud = findViewById(R.id.tvLatidud);
         tvLongitud = findViewById(R.id.tvLongitud);
         imagenComercio = findViewById(R.id.imagenComercio);
         btnCargarImagen = findViewById(R.id.btnCargarImagen);
@@ -136,59 +161,66 @@ public class RegistroComercioActivity extends AppCompatActivity implements View.
     {
         Integer codigoComercio =0;
 
-        String nombreComercio =  txtNombre.getText().toString();
-        String direccionComercio = txtDireccion.getText().toString();
-        String telefonoComercio= txtTelefono.getText().toString();
+        String nombreComercio =  tvNombrecomercio.getText().toString();
+        String direccionComercio = tvDireccionComercio.getText().toString();
+        String telefonoComercio= tvTelefonoComercio.getText().toString();
         String categoriaComercio = "1"; //txtCategoria.getText().toString();
+        Float latitudComercio = Float.parseFloat(tvLatitud.getText().toString());
+        Float longitudComercio =Float.parseFloat(tvLongitud.getText().toString());
         String imagenComercio ="no hay nada"; // txtImagen.getText().toString();
         String usuarioComercio = "1"; //txtUsuario.getText().toString();
 
         if (nombreComercio.isEmpty())
         {
-            txtNombre.setError("Nombre de Comercio requerido.");
+            tvNombrecomercio.setError("Nombre de Comercio requerido.");
         }else if (direccionComercio.isEmpty())
         {
-            txtDireccion.setError("Dirección requerida.");
+            tvDireccionComercio.setError("Dirección requerida.");
         }else if (telefonoComercio.isEmpty())
         {
-            txtTelefono.setError("Telefono requerido");
-        }else if(categoriaComercio.isEmpty())
+            tvTelefonoComercio.setError("Telefono requerido");
+        }
+        else if(latitudComercio==null && longitudComercio ==null)
+        {
+            Toast.makeText(RegistroComercioActivity.this, "No se ha activador la ubicacion GPS.", Toast.LENGTH_SHORT).show();
+        }
+        else if(categoriaComercio.isEmpty())
         {
             //txtCategoria.setError("categoria es requerida");
-        } else {
+        }
+        else {
+            RequestRegistroComercio requestRegistroComercio = new RequestRegistroComercio(Integer.parseInt(categoriaComercio), codigoComercio,direccionComercio,imagenComercio, latitudComercio, longitudComercio ,nombreComercio, telefonoComercio, Integer.parseInt(usuarioComercio));
+            Call<ResponseRegistroComercio> call = serviceRetrofit.doRegistroComercio(requestRegistroComercio);
+            call.enqueue(new Callback<ResponseRegistroComercio>() {
+                @Override
+                public void onResponse(Call<ResponseRegistroComercio> call, Response<ResponseRegistroComercio> response) {
+                    if (response.isSuccessful())
+                    {
+                        Toast.makeText(RegistroComercioActivity.this, "Registro exitoso!", Toast.LENGTH_SHORT).show();
 
+                        Intent i = new Intent(RegistroComercioActivity.this, ListadoComercioActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(RegistroComercioActivity.this, "Algo ha ido mal, revise!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseRegistroComercio> call, Throwable t) {
+                    Toast.makeText(RegistroComercioActivity.this , "Error en al cunsulta. Error:"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
     }
 
-//    public void Registra()
-//    {
-//        RequestRegistroComercio requestRegistroComercio = new RequestRegistroComercio(Integer.parseInt(categoriaCom), codigoCom,direccionCom,imagenCom,  nombreCom, telefonoCom, Integer.parseInt(usuarioCom));
-//        Call<ResponseRegistroComercio> call = marketFriendService.doRegistroComercio(requestRegistroComercio);
-//        call.enqueue(new Callback<ResponseRegistroComercio>() {
-//            @Override
-//            public void onResponse(Call<ResponseRegistroComercio> call, Response<ResponseRegistroComercio> response) {
-//                if (response.isSuccessful())
-//                {
-//                    Toast.makeText(RegistroComercioActivity.this, "Registro exitoso!", Toast.LENGTH_SHORT).show();
-//
-//                    Intent i = new Intent(RegistroComercioActivity.this, PerfilPersonalActivity.class);
-//                    startActivity(i);
-//                    finish();
-//                }
-//                else
-//                {
-//                    Toast.makeText(RegistroComercioActivity.this, "Algo ha ido mal, revise!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseRegistroComercio> call, Throwable t) {
-//                Toast.makeText(RegistroComercioActivity.this, "¡Error!"+ t.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-//    }
+    public void Registrar()
+    {
+
+    }
 
     //endregion
 
@@ -208,7 +240,7 @@ public class RegistroComercioActivity extends AppCompatActivity implements View.
             Uri path = data.getData();
             imagenComercio.setImageURI(path);
         }
-
+        InicializaActivity();
     }
     @Override
     public void onClick(View v) {
@@ -216,8 +248,8 @@ public class RegistroComercioActivity extends AppCompatActivity implements View.
 
         switch (id)
         {
-            case R.id.tvRegistrar:
-                RegistrarComercio();
+            case R.id.btnRegistrar:
+                AsignaInformacion();
                 break;
             case R.id.btnCargarImagen:
                 Cargarimagen();

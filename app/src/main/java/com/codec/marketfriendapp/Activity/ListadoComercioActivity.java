@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.codec.marketfriendapp.Adapter.ListaComercioAdapter;
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Response.ListaComercio;
+import com.codec.marketfriendapp.Response.ResponseListaComercio;
 import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
 import com.codec.marketfriendapp.Retrofit.ServiceRetrofit;
 
@@ -34,7 +34,7 @@ public class ListadoComercioActivity extends AppCompatActivity implements View.O
     ServiceRetrofit serviceRetrofit;
 
 
-    List<ListaComercio> listaComercios;
+    List<ResponseListaComercio> listaComercios;
     RecyclerView recyclerView;
     ListaComercioAdapter adapterListaComercio;
 
@@ -81,26 +81,25 @@ public class ListadoComercioActivity extends AppCompatActivity implements View.O
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        Call<List<ListaComercio>> call = serviceRetrofit.ListarComercio();
-        call.enqueue(new Callback<List<ListaComercio>>() {
+        Call<List<ResponseListaComercio>> call = serviceRetrofit.ListarComercio();
+        call.enqueue(new Callback<List<ResponseListaComercio>>() {
             @Override
-            public void onResponse(Call<List<ListaComercio>> call, Response<List<ListaComercio>> response) {
+            public void onResponse(Call<List<ResponseListaComercio>> call, Response<List<ResponseListaComercio>> response) {
                 if (response.isSuccessful())
                 {
                     listaComercios = response.body();
                     adapterListaComercio = new ListaComercioAdapter(getApplicationContext(), listaComercios);
                     recyclerView.setAdapter(adapterListaComercio);
-                    Toast.makeText(ListadoComercioActivity.this , "aListado comercio", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Toast.makeText(ListadoComercioActivity.this , "no hay nada we"+response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ListadoComercioActivity.this , "Error en al cunsulta. Code:"+response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<ListaComercio>> call, Throwable t) {
-                Toast.makeText(ListadoComercioActivity.this , "error we"+t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<List<ResponseListaComercio>> call, Throwable t) {
+                Toast.makeText(ListadoComercioActivity.this , "Error en al cunsulta. Error:"+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

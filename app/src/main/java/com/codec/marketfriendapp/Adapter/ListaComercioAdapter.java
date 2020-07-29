@@ -1,6 +1,7 @@
 package com.codec.marketfriendapp.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,16 +9,19 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.codec.marketfriendapp.Activity.CalificarComercioActivity;
+import com.codec.marketfriendapp.Activity.DetalleComercioActivity;
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Response.ListaComercio;
+import com.codec.marketfriendapp.Response.ResponseListaComercio;
 
 import java.util.List;
 
 public class ListaComercioAdapter extends RecyclerView.Adapter<ListaComercioAdapter.MyViewHolder> {
     private Context context;
-    private List<ListaComercio> listaComercio;
+    private List<ResponseListaComercio> listaComercio;
 
-    public ListaComercioAdapter(Context context, List<ListaComercio> listaComercio) {
+    public ListaComercioAdapter(Context context, List<ResponseListaComercio> listaComercio) {
         this.context = context;
         this.listaComercio = listaComercio;
     }
@@ -35,6 +39,18 @@ public class ListaComercioAdapter extends RecyclerView.Adapter<ListaComercioAdap
         holder.tvCategoria.setText(listaComercio.get(position).getCategoria());
         holder.rbCalificacion.setProgress(Integer.valueOf(listaComercio.get(position).getCalidadProducto()));
         holder.tvIdComercio.setText(listaComercio.get(position).getCodigo());
+        holder.textViewNombre.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v){
+
+                Intent clasificaComercio  = new Intent(context, DetalleComercioActivity.class);
+                clasificaComercio.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                clasificaComercio.putExtra("Codigocomercio",  listaComercio.get(position).getCodigo());
+                context.startActivity(clasificaComercio);
+
+            }
+        });
 
     }
 

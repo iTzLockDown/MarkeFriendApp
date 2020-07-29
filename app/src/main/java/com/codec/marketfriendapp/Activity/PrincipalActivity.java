@@ -1,22 +1,18 @@
 package com.codec.marketfriendapp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.codec.marketfriendapp.Adapter.ListaComercioAdapter;
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Response.ListaComercio;
+import com.codec.marketfriendapp.Response.ResponseListaComercio;
 import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
 import com.codec.marketfriendapp.Retrofit.ServiceRetrofit;
 import com.google.android.gms.maps.model.LatLng;
@@ -114,16 +110,16 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
 
     private void ListarComercio()
     {
-        Call<List<ListaComercio>> call = serviceRetrofit.ListarComercio();
-        call.enqueue(new Callback<List<ListaComercio>>() {
+        Call<List<ResponseListaComercio>> call = serviceRetrofit.ListarComercio();
+        call.enqueue(new Callback<List<ResponseListaComercio>>() {
             @Override
-            public void onResponse(Call<List<ListaComercio>> call, Response<List<ListaComercio>> response) {
+            public void onResponse(Call<List<ResponseListaComercio>> call, Response<List<ResponseListaComercio>> response) {
                 if (response.isSuccessful())
                 {
                     if(response.isSuccessful())
                     {
-                        List<ListaComercio> listComercio = response.body();
-                        for (ListaComercio comercios: listComercio){
+                        List<ResponseListaComercio> listComercio = response.body();
+                        for (ResponseListaComercio comercios: listComercio){
                             double latitud = Double.parseDouble(comercios.getGpsLatitud().toString());
                             double longitud =Double.parseDouble(comercios.getGpsLongitud().toString());
                             position = new LatLng(latitud, longitud);
@@ -151,7 +147,7 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
             }
 
             @Override
-            public void onFailure(Call<List<ListaComercio>> call, Throwable t) {
+            public void onFailure(Call<List<ResponseListaComercio>> call, Throwable t) {
                 Toast.makeText(PrincipalActivity.this , "Error con la respuesta del servidor. Error "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

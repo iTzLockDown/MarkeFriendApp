@@ -4,17 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.codec.marketfriendapp.Adapter.ListaComercioAdapter;
 import com.codec.marketfriendapp.Adapter.ListaComercioProximoAdapter;
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Response.ListaComercio;
+import com.codec.marketfriendapp.Response.ResponseListaComercio;
 import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
 import com.codec.marketfriendapp.Retrofit.ServiceRetrofit;
 
@@ -35,7 +32,7 @@ public class ListadoComercioProximoActivity extends AppCompatActivity implements
     ServiceRetrofit serviceRetrofit;
 
 
-    List<ListaComercio> listaComercios;
+    List<ResponseListaComercio> listaComercios;
     RecyclerView recyclerView;
     ListaComercioProximoAdapter adapterListaComercioProximo;
 
@@ -74,10 +71,10 @@ public class ListadoComercioProximoActivity extends AppCompatActivity implements
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        Call<List<ListaComercio>> call = serviceRetrofit.ListarComercio();
-        call.enqueue(new Callback<List<ListaComercio>>() {
+        Call<List<ResponseListaComercio>> call = serviceRetrofit.ListarComercio();
+        call.enqueue(new Callback<List<ResponseListaComercio>>() {
             @Override
-            public void onResponse(Call<List<ListaComercio>> call, Response<List<ListaComercio>> response) {
+            public void onResponse(Call<List<ResponseListaComercio>> call, Response<List<ResponseListaComercio>> response) {
                 if (response.isSuccessful())
                 {
                     listaComercios = response.body();
@@ -92,7 +89,7 @@ public class ListadoComercioProximoActivity extends AppCompatActivity implements
             }
 
             @Override
-            public void onFailure(Call<List<ListaComercio>> call, Throwable t) {
+            public void onFailure(Call<List<ResponseListaComercio>> call, Throwable t) {
                 Toast.makeText(ListadoComercioProximoActivity.this , "Ha ocurrido un error, vuelva a intentar. Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
