@@ -161,35 +161,35 @@ public class RegistroComercioActivity extends AppCompatActivity implements View.
 
     }
 
-    public void Registra()
-    {
-        RequestRegistroComercio requestRegistroComercio = new RequestRegistroComercio(Integer.parseInt(categoriaCom), codigoCom,direccionCom,imagenCom,  nombreCom, telefonoCom, Integer.parseInt(usuarioCom));
-        Call<ResponseRegistroComercio> call = marketFriendService.doRegistroComercio(requestRegistroComercio);
-        call.enqueue(new Callback<ResponseRegistroComercio>() {
-            @Override
-            public void onResponse(Call<ResponseRegistroComercio> call, Response<ResponseRegistroComercio> response) {
-                if (response.isSuccessful())
-                {
-                    Toast.makeText(RegistroComercioActivity.this, "Registro exitoso!", Toast.LENGTH_SHORT).show();
+//    public void Registra()
+//    {
+//        RequestRegistroComercio requestRegistroComercio = new RequestRegistroComercio(Integer.parseInt(categoriaCom), codigoCom,direccionCom,imagenCom,  nombreCom, telefonoCom, Integer.parseInt(usuarioCom));
+//        Call<ResponseRegistroComercio> call = marketFriendService.doRegistroComercio(requestRegistroComercio);
+//        call.enqueue(new Callback<ResponseRegistroComercio>() {
+//            @Override
+//            public void onResponse(Call<ResponseRegistroComercio> call, Response<ResponseRegistroComercio> response) {
+//                if (response.isSuccessful())
+//                {
+//                    Toast.makeText(RegistroComercioActivity.this, "Registro exitoso!", Toast.LENGTH_SHORT).show();
+//
+//                    Intent i = new Intent(RegistroComercioActivity.this, PerfilPersonalActivity.class);
+//                    startActivity(i);
+//                    finish();
+//                }
+//                else
+//                {
+//                    Toast.makeText(RegistroComercioActivity.this, "Algo ha ido mal, revise!", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseRegistroComercio> call, Throwable t) {
+//                Toast.makeText(RegistroComercioActivity.this, "¡Error!"+ t.getMessage(), Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
+//    }
 
-                    Intent i = new Intent(RegistroComercioActivity.this, PerfilPersonalActivity.class);
-                    startActivity(i);
-                    finish();
-                }
-                else
-                {
-                    Toast.makeText(RegistroComercioActivity.this, "Algo ha ido mal, revise!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseRegistroComercio> call, Throwable t) {
-                Toast.makeText(RegistroComercioActivity.this, "¡Error!"+ t.getMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
-    }
     //endregion
 
     //region Activitys
