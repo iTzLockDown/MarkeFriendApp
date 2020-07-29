@@ -66,7 +66,7 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
     }
     public void CalificarComercio()
     {
-        Intent i = new Intent(PrincipalActivity.this, CalificarComercioActivity.class);
+        Intent i = new Intent(PrincipalActivity.this, ListadoComercioProximoActivity.class);
         startActivity(i);
     }
     public void VerMapa(){

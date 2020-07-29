@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codec.marketfriendapp.Adapter.ListaComercioAdapter;
+import com.codec.marketfriendapp.Adapter.ListaComercioProximoAdapter;
 import com.codec.marketfriendapp.R;
 import com.codec.marketfriendapp.Response.ListaComercio;
 import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
@@ -24,11 +25,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListadoComercioActivity extends AppCompatActivity implements View.OnClickListener {
+public class ListadoComercioProximoActivity extends AppCompatActivity implements View.OnClickListener  {
+
 
     //region Parametros y Variables
     TextView tvNombreUsuario, tvBilleteraUsuario;
-    Button btnAgregarComercio;
 
     ClienteRetrofit clienteRetrofit;
     ServiceRetrofit serviceRetrofit;
@@ -36,7 +37,7 @@ public class ListadoComercioActivity extends AppCompatActivity implements View.O
 
     List<ListaComercio> listaComercios;
     RecyclerView recyclerView;
-    ListaComercioAdapter adapterListaComercio;
+    ListaComercioProximoAdapter adapterListaComercioProximo;
 
     //endregion
 
@@ -47,7 +48,7 @@ public class ListadoComercioActivity extends AppCompatActivity implements View.O
         retrofitInit();
         RegistroObjeto();
         ListenerObjeto();
-        cargarComercio();
+        cargarComercioProximo();
     }
     //endregion
 
@@ -61,21 +62,13 @@ public class ListadoComercioActivity extends AppCompatActivity implements View.O
     {
         tvNombreUsuario = findViewById(R.id.tvNombreUsuario);
         tvBilleteraUsuario = findViewById(R.id.tvBilleteraUsuario);
-        btnAgregarComercio= findViewById(R.id.btnAgregarComercio);
 
     }
     public void ListenerObjeto(){
-        btnAgregarComercio.setOnClickListener(this);
+
     }
 
-    public void CrearComercio()
-    {
-        Intent i = new Intent(ListadoComercioActivity.this, RegistroComercioActivity.class);
-        startActivity(i);
-        finish();
-    }
-
-    public void cargarComercio()
+    public void cargarComercioProximo()
     {
         listaComercios = new ArrayList<>();
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
@@ -88,19 +81,19 @@ public class ListadoComercioActivity extends AppCompatActivity implements View.O
                 if (response.isSuccessful())
                 {
                     listaComercios = response.body();
-                    adapterListaComercio = new ListaComercioAdapter(getApplicationContext(), listaComercios);
-                    recyclerView.setAdapter(adapterListaComercio);
-                    Toast.makeText(ListadoComercioActivity.this , "aListado comercio", Toast.LENGTH_SHORT).show();
+                    adapterListaComercioProximo = new ListaComercioProximoAdapter(getApplicationContext(), listaComercios);
+                    recyclerView.setAdapter(adapterListaComercioProximo);
+
                 }
                 else
                 {
-                    Toast.makeText(ListadoComercioActivity.this , "no hay nada we"+response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ListadoComercioProximoActivity.this , "Error en la consulta, verifique su petición."+response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<ListaComercio>> call, Throwable t) {
-                Toast.makeText(ListadoComercioActivity.this , "error we"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListadoComercioProximoActivity.this , "Ha ocurrido un error, vuelva a intentar. Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -111,7 +104,7 @@ public class ListadoComercioActivity extends AppCompatActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listado_comercio);
+        setContentView(R.layout.activity_listado_comercio_proximo);
         InicializaMetodo();
     }
 
@@ -122,9 +115,12 @@ public class ListadoComercioActivity extends AppCompatActivity implements View.O
         switch (id)
         {
             case R.id.btnAgregarComercio:
-                CrearComercio();
+
                 break;
         }
     }
     //endregion
+
+
+
 }

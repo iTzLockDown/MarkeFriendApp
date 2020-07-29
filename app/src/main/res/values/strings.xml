@@ -3,10 +3,13 @@
 
     <string name="my_prompt">Escoge tu categoria</string>
     <string-array name="spinner">
-        <item>Android</item>
-        <item>iOS</item>
-        <item>Symbian</item>
-        <item>Windows Phone</item>
+        <item>Tienda</item>
+        <item>Bodeguita</item>
+        <item>Jugueria</item>
+        <item>Cafeteria</item>
+        <item>Restaurante</item>
+        <item>Snack Bar</item>
+        <item>Farmacia</item>
     </string-array>
     <string name="title_activity_ver_mapa">Map</string>
 </resources>

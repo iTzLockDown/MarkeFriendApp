@@ -146,7 +146,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:text="Registrar Nuevo Comercio"
+        android:text="Ayuda"
         android:textColor="#172646"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -158,7 +158,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:text="Registra un Nuevo Comercio o Punto de Venta."
+        android:text="FAQ, tutorial y contacto."
         android:textColor="#818181"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -171,52 +171,11 @@
         android:layout_height="35dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/ic_note_add_black_24dp"
+        android:src="@drawable/ic_help_outline_black_24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLinea2" />
 
-    <ImageView
-        android:id="@+id/imgLinea3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/imglinea"
-        app:layout_constraintTop_toBottomOf="@+id/imgNuevoComercio"
-        tools:layout_editor_absoluteX="0dp" />
 
-    <TextView
-        android:id="@+id/txtAyuda"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:text="Ayuda"
-        android:textColor="#172646"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgAyuda"
-        app:layout_constraintTop_toBottomOf="@+id/imgLinea3" />
-
-    <TextView
-        android:id="@+id/nuevoSubAyuda"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:text="FAQ, tutorial y contacto."
-        android:textColor="#818181"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgAyuda"
-        app:layout_constraintTop_toBottomOf="@+id/txtAyuda" />
-
-    <ImageView
-        android:id="@+id/imgAyuda"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/ic_help_outline_black_24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgLinea3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

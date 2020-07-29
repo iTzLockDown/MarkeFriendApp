@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F9FBFF"
-    tools:context=".Activity.ListadoComercioActivity">
+    tools:context=".Activity.ListadoComercioProximoActivity">
+
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <ImageView
-        android:id="@+id/ivImagenUsuario"
+        android:id="@+id/imagenUsuario"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="20dp"
@@ -26,64 +27,50 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvNombreUsuario"
+        android:id="@+id/nombreUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Wilhelm Ruiz"
         android:textColor="#FFF"
         android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="@+id/ivImagenUsuario"
-        app:layout_constraintStart_toStartOf="@+id/ivImagenUsuario"
-        app:layout_constraintTop_toBottomOf="@+id/ivImagenUsuario" />
+        app:layout_constraintEnd_toEndOf="@+id/imagenUsuario"
+        app:layout_constraintStart_toStartOf="@+id/imagenUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/imagenUsuario" />
 
     <TextView
-        android:id="@+id/tvBilleteraUsuario"
+        android:id="@+id/billeteraUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:text="CREDITOS: 150 MarketCoins"
         android:textColor="#fff"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/tvNombreUsuario"
-        app:layout_constraintStart_toStartOf="@+id/tvNombreUsuario"
-        app:layout_constraintTop_toBottomOf="@+id/tvNombreUsuario" />
+        app:layout_constraintEnd_toEndOf="@+id/nombreUsuario"
+        app:layout_constraintStart_toStartOf="@+id/nombreUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/nombreUsuario" />
 
     <TextView
-        android:id="@+id/tvTituloComercio"
+        android:id="@+id/tvComercio"
         style="@style/Theme.AppCompat.Light"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="16dp"
-        android:text="Comercios"
+        android:text="Puntos de venta Cercanos"
         android:textSize="22dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBilleteraUsuario" />
+        app:layout_constraintTop_toBottomOf="@+id/billeteraUsuario" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="357dp"
+        android:layout_height="420dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTituloComercio" />
+        app:layout_constraintTop_toBottomOf="@+id/tvComercio" />
 
-    <Button
-        android:id="@+id/btnAgregarComercio"
-        android:layout_width="194dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bgbtnlogin"
-        android:text="Registrar Comercio"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:textSize="18sp"
-        android:drawableLeft="@drawable/shopadd"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
