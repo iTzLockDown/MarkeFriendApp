@@ -1,13 +1,14 @@
 package com.codec.marketfriendapp.Retrofit;
 
-import androidx.annotation.NonNull;
-
 import com.codec.marketfriendapp.Request.RequestCalificaComercio;
+import com.codec.marketfriendapp.Request.RequestLoginUsuario;
 import com.codec.marketfriendapp.Request.RequestRegistroComercio;
+import com.codec.marketfriendapp.Request.RequestRegistroUsuario;
 import com.codec.marketfriendapp.Response.ResponseCalificaComercio;
 import com.codec.marketfriendapp.Response.ResponseListaComentario;
 import com.codec.marketfriendapp.Response.ResponseListaComercio;
 import com.codec.marketfriendapp.Response.ResponseRegistroComercio;
+import com.codec.marketfriendapp.Response.ResponseRegistroUsuario;
 
 import java.util.List;
 
@@ -26,17 +27,15 @@ public interface ServiceRetrofit {
     Call<ResponseRegistroComercio> doRegistroComercio(@Body RequestRegistroComercio requestRegistroComercio);
 
     @GET("/api/listaComentario/{codigoComercio}")
-    Call<List<ResponseListaComentario>> doListadoComentario(@NonNull @Path("codigoComercio") Integer codigoComercio);
+    Call<List<ResponseListaComentario>> doListadoComentario(@Path("codigoComercio") Integer codigoComercio);
 
     @POST("/api/clasificacionComercion")
     Call<ResponseCalificaComercio> doCalificaComercio(@Body RequestCalificaComercio requestCalificaComercio);
 
-//    @POST("/api/usuario")
-//    Call<ResponseRegistroUsuario> doRegistroUsuario(@Body RequestRegistroUsuario requestRegistroUsuario);
-//
-//
-//
-//    @POST("/api/login")
-//    Call<ResponseUsuario> doLogin(@Body RequestUsuario requestUsuario);
+    @POST("/api/usuario")
+    Call<ResponseRegistroUsuario> doRegistroUsuario(@Body RequestRegistroUsuario requestRegistroUsuario);
+
+    @POST("/api/login")
+    Call<ResponseRegistroUsuario> doLogin(@Body RequestLoginUsuario requestUsuario);
 
 }

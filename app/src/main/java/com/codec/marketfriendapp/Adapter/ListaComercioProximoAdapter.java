@@ -51,6 +51,7 @@ public class ListaComercioProximoAdapter extends RecyclerView.Adapter<ListaComer
                 clasificaComercio.putExtra("NombreComercio",  listaComercio.get(position).getNombre() );
                 clasificaComercio.putExtra("Categoria",  listaComercio.get(position).getCategoria() );
                 clasificaComercio.putExtra("Codigo",  listaComercio.get(position).getCodigo() );
+                clasificaComercio.putExtra("CalidadProducto",  listaComercio.get(position).getCalidadProducto() );
                 context.startActivity(clasificaComercio);
 
             }

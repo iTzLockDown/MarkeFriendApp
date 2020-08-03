@@ -98,9 +98,9 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
     public void VerMapa(){
         ListarComercio();
     }
-    public void ListadoComercio()
+    public void RegistrarComercio()
     {
-        Intent i = new Intent(PrincipalActivity.this, ListadoComercioActivity.class);
+        Intent i = new Intent(PrincipalActivity.this, RegistroComercioActivity.class);
         startActivity(i);
     }
     public void DetalleComercio(){
@@ -182,7 +182,7 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
                 VerMapa();
                 break;
             case R.id.ivListado:
-                ListadoComercio();
+                RegistrarComercio();
                 break;
             case R.id.btnDetalle:
                 DetalleComercio();

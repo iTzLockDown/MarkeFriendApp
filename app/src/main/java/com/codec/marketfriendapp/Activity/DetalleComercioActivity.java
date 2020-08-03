@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,7 @@ import com.codec.marketfriendapp.Adapter.ListadoComentarioAdapter;
 import com.codec.marketfriendapp.R;
 import com.codec.marketfriendapp.Response.ResponseListaComentario;
 import com.codec.marketfriendapp.Response.ResponseListaComercio;
+import com.codec.marketfriendapp.Retrofit.Auxiliar;
 import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
 import com.codec.marketfriendapp.Retrofit.ServiceRetrofit;
 
@@ -26,13 +29,17 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-public class DetalleComercioActivity extends AppCompatActivity {
+public class DetalleComercioActivity extends AppCompatActivity implements View.OnClickListener  {
 
 
     //region Parametros y Variables
-
+    TextView txtCategoria, negocioTitulo,tvCodigoComercio;
+    RatingBar rbCalificacion;
     Integer codigoComercio;
+    ImageView ivComercio;
 
     ClienteRetrofit clienteRetrofit;
     ServiceRetrofit serviceRetrofit;
@@ -40,6 +47,9 @@ public class DetalleComercioActivity extends AppCompatActivity {
     List<ResponseListaComentario> responseListaComentarios;
     RecyclerView recyclerView;
     ListadoComentarioAdapter adapterListadoComentario;
+
+    List<ResponseListaComercio> listaComercios;
+    ListaComercioAdapter adapterListaComercio;
 
     //endregion
 
@@ -50,7 +60,6 @@ public class DetalleComercioActivity extends AppCompatActivity {
         retrofitInit();
         RegistroObjeto();
         ListenerObjeto();
-        cargarComercio();
     }
     //endregion
 
@@ -63,41 +72,50 @@ public class DetalleComercioActivity extends AppCompatActivity {
     }
     public void RegistroObjeto()
     {
-
+        ivComercio = findViewById(R.id.ivComercio);
+        txtCategoria = findViewById(R.id.txtCategoria);
+        negocioTitulo = findViewById(R.id.negocioTitulo);
+        tvCodigoComercio = findViewById(R.id.tvCodigoComercio);
+        rbCalificacion = (RatingBar)findViewById(R.id.rbCalificacion);
     }
     public void ListenerObjeto(){
-
+        ivComercio.setOnClickListener(this);
     }
 
-    public void cargarComercio()
+    public void cargarComercio(Integer codCom)
     {
         responseListaComentarios = new ArrayList<>();
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        Call<List<ResponseListaComentario>> call = serviceRetrofit.doListadoComentario(5);
+
+        Call<List<ResponseListaComentario>> call = serviceRetrofit.doListadoComentario(codCom);
         call.enqueue(new Callback<List<ResponseListaComentario>>() {
+
             @Override
             public void onResponse(Call<List<ResponseListaComentario>> call, Response<List<ResponseListaComentario>> response) {
                 if (response.isSuccessful())
                 {
-                    Toast.makeText(DetalleComercioActivity.this , "entrado:", Toast.LENGTH_SHORT).show();
                     responseListaComentarios = response.body();
                     adapterListadoComentario = new ListadoComentarioAdapter(getApplicationContext(), responseListaComentarios);
                     recyclerView.setAdapter(adapterListadoComentario);
                 }
                 else
                 {
-                    Toast.makeText(DetalleComercioActivity.this , "Error en al consulta. Code:"+response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetalleComercioActivity.this , "Hay un problema. Code:"+response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<ResponseListaComentario>> call, Throwable t) {
-                Toast.makeText(DetalleComercioActivity.this , "Error en al consulta. Error:"+t.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
         });
+
     }
+
+
+
     //endregion
 
     //region Activitys
@@ -110,12 +128,27 @@ public class DetalleComercioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalle_comercio);
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
-
+        InicializaMetodo();
         if (b!=null)
         {
-            codigoComercio = Integer.parseInt(b.getString("Codigocomercio"));
+            negocioTitulo.setText(b.getString("NombreComercio"));
+            txtCategoria.setText(b.getString("Categoria"));
+            tvCodigoComercio.setText(b.getString("Codigo"));
+            rbCalificacion.setProgress(Integer.valueOf(b.getString("Calificacion")));
         }
-        InicializaMetodo();
+        cargarComercio(Integer.parseInt(tvCodigoComercio.getText().toString()));
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        int id  =v.getId();
+
+        switch (id)
+        {
+            case R.id.ivComercio:
+                break;
+        }
     }
     //endregion
 

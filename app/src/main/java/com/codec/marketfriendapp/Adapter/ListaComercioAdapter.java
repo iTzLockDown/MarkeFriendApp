@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.codec.marketfriendapp.Activity.CalificarComercioActivity;
 import com.codec.marketfriendapp.Activity.DetalleComercioActivity;
 import com.codec.marketfriendapp.R;
 import com.codec.marketfriendapp.Response.ResponseListaComercio;
@@ -46,7 +45,10 @@ public class ListaComercioAdapter extends RecyclerView.Adapter<ListaComercioAdap
 
                 Intent clasificaComercio  = new Intent(context, DetalleComercioActivity.class);
                 clasificaComercio.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                clasificaComercio.putExtra("Codigocomercio",  listaComercio.get(position).getCodigo());
+                clasificaComercio.putExtra("NombreComercio",  listaComercio.get(position).getNombre() );
+                clasificaComercio.putExtra("Categoria",  listaComercio.get(position).getCategoria() );
+                clasificaComercio.putExtra("Codigo",  listaComercio.get(position).getCodigo() );
+                clasificaComercio.putExtra("Calificacion", listaComercio.get(position).getCalidadProducto());
                 context.startActivity(clasificaComercio);
 
             }

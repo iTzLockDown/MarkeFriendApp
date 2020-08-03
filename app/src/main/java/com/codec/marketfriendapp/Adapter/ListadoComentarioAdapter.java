@@ -4,12 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.codec.marketfriendapp.Config.Globales;
 import com.codec.marketfriendapp.R;
 import com.codec.marketfriendapp.Response.ResponseListaComentario;
 
@@ -17,6 +17,7 @@ import java.util.List;
 
 public class ListadoComentarioAdapter extends RecyclerView.Adapter<ListadoComentarioAdapter.MyViewHolder> {
     private Context context;
+    private Globales global = new Globales();
     private List<ResponseListaComentario> responseListaComentarios;
 
     public ListadoComentarioAdapter(Context context, List<ResponseListaComentario> responseListaComentarios) {
@@ -33,7 +34,8 @@ public class ListadoComentarioAdapter extends RecyclerView.Adapter<ListadoComent
     @Override
     public void onBindViewHolder(@NonNull final ListadoComentarioAdapter.MyViewHolder holder, final int position) {
         holder.tvComentario.setText(responseListaComentarios.get(position).getComentario());
-        holder.tvUsuario.setText(responseListaComentarios.get(position).getUsuario());
+        String usuario = global.wordFirstCap(responseListaComentarios.get(position).getUsuario());
+        holder.tvUsuario.setText(usuario);
         holder.tvFecha.setText(responseListaComentarios.get(position).getFecha());
 
     }
@@ -49,9 +51,9 @@ public class ListadoComentarioAdapter extends RecyclerView.Adapter<ListadoComent
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            tvComentario = (TextView) itemView.findViewById(R.id.tvNombreComercio);
-            tvUsuario = (TextView) itemView.findViewById(R.id.tvTelefono);
-            tvFecha = (TextView) itemView.findViewById(R.id.tvCategoria);
+            tvComentario = (TextView) itemView.findViewById(R.id.tvComentario);
+            tvUsuario = (TextView) itemView.findViewById(R.id.tvUsuario);
+            tvFecha = (TextView) itemView.findViewById(R.id.tvFecha);
         }
     }
 }

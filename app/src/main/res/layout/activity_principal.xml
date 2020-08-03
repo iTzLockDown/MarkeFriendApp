@@ -142,13 +142,13 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginBottom="8dp"
-                    android:src="@drawable/paper" />
+                    android:src="@drawable/shoppingbasket" />
 
                 <TextView
                     android:id="@+id/mpPedido"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Comercios"
+                    android:text="Registrar"
                     android:textColor="#172646"
                     android:textSize="15sp" />
 
@@ -169,7 +169,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="0dp"
-        android:src="@drawable/ic_insert_photo_black_24dp"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -197,7 +197,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@+id/ivComercio"
         app:layout_constraintStart_toStartOf="@+id/ivComercio"
-        app:layout_constraintTop_toBottomOf="@+id/ivComercio" />
+        app:layout_constraintTop_toBottomOf="@+id/ivComercio"/>
 
        <TextView
            android:id="@+id/tvNumeroComentario"
@@ -222,7 +222,6 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNumeroComentario" />
 
