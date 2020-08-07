@@ -2,7 +2,9 @@ package com.codec.marketfriendapp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codec.marketfriendapp.Config.Constantes;
+import com.codec.marketfriendapp.Config.MarketFriend;
+import com.codec.marketfriendapp.Config.SharedPreferenceManager;
 import com.codec.marketfriendapp.R;
 import com.codec.marketfriendapp.Request.RequestLoginUsuario;
 import com.codec.marketfriendapp.Response.ResponseRegistroUsuario;
@@ -81,7 +86,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onResponse(Call<ResponseRegistroUsuario> call, Response<ResponseRegistroUsuario> response) {
                         if (response.isSuccessful())
                         {
-                            Toast.makeText(LoginActivity.this, "¡Sesión iniciada correctamente!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "¡Sesión iniciada correctamente!"+response.body().getUsuario(), Toast.LENGTH_SHORT).show();
+
+                            SharedPreferenceManager.setNombre(Constantes.PREF_USER, "hachiko");
+
+
                             Intent i = new Intent(LoginActivity.this, PrincipalActivity.class);
 
                             startActivity(i);

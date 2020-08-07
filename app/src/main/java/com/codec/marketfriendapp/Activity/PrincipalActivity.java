@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 
 import com.codec.marketfriendapp.Adapter.ListadoComentarioAdapter;
 import com.codec.marketfriendapp.Config.Constantes;
+import com.codec.marketfriendapp.Config.SharedPreferenceManager;
 import com.codec.marketfriendapp.R;
 import com.codec.marketfriendapp.Response.ResponseListaComentario;
 import com.codec.marketfriendapp.Response.ResponseListaComercio;
@@ -286,6 +288,8 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
         InicializaMetodo();
+        String nombre = SharedPreferenceManager.getNombre(Constantes.PREF_USER);
+        tvNombreUsuario.setText(nombre);
 
     }
 
