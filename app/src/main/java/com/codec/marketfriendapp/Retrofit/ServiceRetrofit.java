@@ -7,6 +7,8 @@ import com.codec.marketfriendapp.Request.RequestRegistroUsuario;
 import com.codec.marketfriendapp.Response.ResponseCalificaComercio;
 import com.codec.marketfriendapp.Response.ResponseListaComentario;
 import com.codec.marketfriendapp.Response.ResponseListaComercio;
+import com.codec.marketfriendapp.Response.ResponseListaMarket;
+import com.codec.marketfriendapp.Response.ResponseMensajeCalificacion;
 import com.codec.marketfriendapp.Response.ResponseRegistroComercio;
 import com.codec.marketfriendapp.Response.ResponseRegistroUsuario;
 
@@ -29,13 +31,19 @@ public interface ServiceRetrofit {
     @GET("/api/listaComentario/{codigoComercio}")
     Call<List<ResponseListaComentario>> doListadoComentario(@Path("codigoComercio") Integer codigoComercio);
 
-    @POST("/api/clasificacionComercion")
-    Call<ResponseCalificaComercio> doCalificaComercio(@Body RequestCalificaComercio requestCalificaComercio);
+    @POST("/api/clasificacionComercio")
+    Call<List<ResponseMensajeCalificacion>> doCalificaComercio(@Body RequestCalificaComercio requestCalificaComercio);
 
     @POST("/api/usuario")
     Call<ResponseRegistroUsuario> doRegistroUsuario(@Body RequestRegistroUsuario requestRegistroUsuario);
 
     @POST("/api/login")
     Call<ResponseRegistroUsuario> doLogin(@Body RequestLoginUsuario requestUsuario);
+
+    @GET("/api/comercioTopProximo/{latitud}/{longitud}")
+    Call<List<ResponseListaMarket>> doTraeComercioProximo(@Path("latitud") Double gpsLatitud, @Path("longitud") Double gpsLongitud);
+
+    @GET("/api/listaComercioProximo/{latitud}/{longitud}")
+    Call<List<ResponseListaMarket>> doListaComercioProximo(@Path("latitud") Double gpsLatitud, @Path("longitud") Double gpsLongitud);
 
 }

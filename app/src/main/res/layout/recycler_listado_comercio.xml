@@ -83,18 +83,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/ivComentarios"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginEnd="15dp"
-        android:src="@drawable/comment"
-        app:layout_constraintEnd_toStartOf="@+id/ivIrLugar"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/ivIrLugar"
+        android:id="@+id/ivDetalle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"

@@ -14,8 +14,12 @@ import android.widget.Toast;
 import com.codec.marketfriendapp.R;
 import com.codec.marketfriendapp.Request.RequestCalificaComercio;
 import com.codec.marketfriendapp.Response.ResponseCalificaComercio;
+import com.codec.marketfriendapp.Response.ResponseListaComercio;
+import com.codec.marketfriendapp.Response.ResponseMensajeCalificacion;
 import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
 import com.codec.marketfriendapp.Retrofit.ServiceRetrofit;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -87,31 +91,34 @@ public class CalificarComercioActivity extends AppCompatActivity implements View
         }else
         {
             RequestCalificaComercio requestCalificaComercio = new RequestCalificaComercio(calidadAtencion, codigoComercio, comentarioAtencion, precioProducto, tiempoAtencion, usuario);
-            Call<ResponseCalificaComercio> call = serviceRetrofit.doCalificaComercio(requestCalificaComercio);
-           call.enqueue(new Callback<ResponseCalificaComercio>() {
-               @Override
-               public void onResponse(Call<ResponseCalificaComercio> call, Response<ResponseCalificaComercio> response) {
-                   if (response.isSuccessful())
-                   {
-                       Toast.makeText(CalificarComercioActivity.this, "Calificacion exitosa!", Toast.LENGTH_SHORT).show();
+            Call<List<ResponseMensajeCalificacion>> call = serviceRetrofit.doCalificaComercio(requestCalificaComercio);
+            call.enqueue(new Callback<List<ResponseMensajeCalificacion>>() {
+                @Override
+                public void onResponse(Call<List<ResponseMensajeCalificacion>> call, Response<List<ResponseMensajeCalificacion>> response) {
 
+
+                    if (response.isSuccessful())
+                    {
+                        List<ResponseMensajeCalificacion> mensajeComercio = response.body();
+                        for (ResponseMensajeCalificacion mensaje: mensajeComercio){
+                            Toast.makeText(CalificarComercioActivity.this, mensaje.getMensaje(), Toast.LENGTH_SHORT).show();
+                        }
                        Intent i = new Intent(CalificarComercioActivity.this, ListadoComercioProximoActivity.class);
                        startActivity(i);
                        finish();
-                   }
-                   else
-                   {
-                       Toast.makeText(CalificarComercioActivity.this, "¡Error revise los datos!", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(CalificarComercioActivity.this, "no calificado"+response.code(), Toast.LENGTH_SHORT).show();
 
-                   }
-               }
+                    }
+                }
 
-               @Override
-               public void onFailure(Call<ResponseCalificaComercio> call, Throwable t) {
-                   Toast.makeText(CalificarComercioActivity.this, "¡algo ha ido mal!", Toast.LENGTH_SHORT).show();
+                @Override
+                public void onFailure(Call<List<ResponseMensajeCalificacion>> call, Throwable t) {
 
-               }
-           });
+                }
+            });
         }
 
 

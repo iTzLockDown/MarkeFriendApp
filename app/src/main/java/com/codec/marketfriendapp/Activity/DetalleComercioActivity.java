@@ -60,6 +60,8 @@ public class DetalleComercioActivity extends AppCompatActivity implements View.O
         retrofitInit();
         RegistroObjeto();
         ListenerObjeto();
+        RecuperarData();
+
     }
     //endregion
 
@@ -114,29 +116,30 @@ public class DetalleComercioActivity extends AppCompatActivity implements View.O
 
     }
 
-
-
-    //endregion
-
-    //region Activitys
-
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle_comercio);
+    public void RecuperarData()
+    {
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
-        InicializaMetodo();
+
         if (b!=null)
         {
             negocioTitulo.setText(b.getString("NombreComercio"));
             txtCategoria.setText(b.getString("Categoria"));
             tvCodigoComercio.setText(b.getString("Codigo"));
             rbCalificacion.setProgress(Integer.valueOf(b.getString("Calificacion")));
+            cargarComercio(Integer.parseInt(b.getString("Codigo")));
         }
-        cargarComercio(Integer.parseInt(tvCodigoComercio.getText().toString()));
+    }
+
+    //endregion
+
+    //region Activitys
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detalle_comercio);
+        InicializaMetodo();
+
     }
 
     @Override

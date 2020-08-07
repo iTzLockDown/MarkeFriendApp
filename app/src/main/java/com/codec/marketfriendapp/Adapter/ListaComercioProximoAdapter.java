@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -12,16 +13,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.codec.marketfriendapp.Activity.CalificarComercioActivity;
+import com.codec.marketfriendapp.Activity.DetalleComercioActivity;
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Response.ResponseListaComercio;
+import com.codec.marketfriendapp.Response.ResponseListaMarket;
 
 import java.util.List;
 
 public class ListaComercioProximoAdapter extends RecyclerView.Adapter<ListaComercioProximoAdapter.MyViewHolder> {
     private Context context;
-    private List<ResponseListaComercio> listaComercio;
+    private List<ResponseListaMarket> listaComercio;
 
-    public ListaComercioProximoAdapter(Context context, List<ResponseListaComercio> listaComercio) {
+    public ListaComercioProximoAdapter(Context context, List<ResponseListaMarket> listaComercio) {
         this.context = context;
         this.listaComercio = listaComercio;
     }
@@ -37,8 +39,8 @@ public class ListaComercioProximoAdapter extends RecyclerView.Adapter<ListaComer
         holder.textViewNombre.setText(listaComercio.get(position).getNombre());
         holder.tvTelefono.setText(listaComercio.get(position).getTelefono());
         holder.tvCategoria.setText(listaComercio.get(position).getCategoria());
-        holder.rbCalificacion.setProgress(Integer.valueOf(listaComercio.get(position).getCalidadProducto()));
-        holder.tvIdComercio.setText(listaComercio.get(position).getCodigo());
+        holder.rbCalificacion.setProgress(Integer.valueOf(listaComercio.get(position).getCalidadAtencion()));
+        holder.tvIdComercio.setText(listaComercio.get(position).getCodigo().toString());
 
 
         holder.textViewNombre.setOnClickListener(new View.OnClickListener()
@@ -50,10 +52,22 @@ public class ListaComercioProximoAdapter extends RecyclerView.Adapter<ListaComer
                 clasificaComercio.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 clasificaComercio.putExtra("NombreComercio",  listaComercio.get(position).getNombre() );
                 clasificaComercio.putExtra("Categoria",  listaComercio.get(position).getCategoria() );
-                clasificaComercio.putExtra("Codigo",  listaComercio.get(position).getCodigo() );
-                clasificaComercio.putExtra("CalidadProducto",  listaComercio.get(position).getCalidadProducto() );
+                clasificaComercio.putExtra("Codigo",  listaComercio.get(position).getCodigo().toString() );
+                clasificaComercio.putExtra("CalidadProducto",  listaComercio.get(position).getCalidadAtencion() );
                 context.startActivity(clasificaComercio);
 
+            }
+        });
+        holder.ivDetalle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent detalleComercio  = new Intent(context, DetalleComercioActivity.class);
+                detalleComercio.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                detalleComercio.putExtra("NombreComercio",  listaComercio.get(position).getNombre() );
+                detalleComercio.putExtra("Categoria",  listaComercio.get(position).getCategoria() );
+                detalleComercio.putExtra("Codigo",  listaComercio.get(position).getCodigo().toString() );
+                detalleComercio.putExtra("Calificacion", listaComercio.get(position).getCalidadAtencion());
+                context.startActivity(detalleComercio);
             }
         });
 
@@ -67,6 +81,7 @@ public class ListaComercioProximoAdapter extends RecyclerView.Adapter<ListaComer
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textViewNombre, tvTelefono, tvCategoria, tvIdComercio;
         RatingBar rbCalificacion;
+        ImageView ivDetalle;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -75,6 +90,7 @@ public class ListaComercioProximoAdapter extends RecyclerView.Adapter<ListaComer
             tvCategoria = (TextView) itemView.findViewById(R.id.tvCategoria);
             rbCalificacion = (RatingBar) itemView.findViewById(R.id.rbCalificacion);
             tvIdComercio = itemView.findViewById(R.id.tvIdComercio);
+            ivDetalle = (ImageView)itemView.findViewById(R.id.ivDetalle);
         }
     }
 }

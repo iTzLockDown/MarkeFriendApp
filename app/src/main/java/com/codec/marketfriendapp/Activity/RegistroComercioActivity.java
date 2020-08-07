@@ -153,10 +153,6 @@ public class RegistroComercioActivity extends AppCompatActivity implements View.
         startActivityForResult(intent.createChooser(intent, "Seleccione la imagen"), 10);
     }
 
-    public void RegistrarComercio()
-    {
-
-    }
     public void AsignaInformacion()
     {
         Integer codigoComercio =0;
@@ -217,10 +213,7 @@ public class RegistroComercioActivity extends AppCompatActivity implements View.
 
     }
 
-    public void Registrar()
-    {
 
-    }
 
     //endregion
 
