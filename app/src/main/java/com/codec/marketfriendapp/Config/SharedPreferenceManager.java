@@ -11,14 +11,14 @@ public class SharedPreferenceManager {
     }
     private static SharedPreferences getShared()
     {
-        return MarketFriend.getContext().getSharedPreferences("APP_SETTINGS", Context.MODE_PRIVATE);
+        return MarketFriend.getContext().getSharedPreferences(APP_SETTINGS_FILE, Context.MODE_PRIVATE);
     }
-    public static void setNombre(String dataNonbre, String dataValue){
+    public static void setDataPreference(String dataValue, String dataKey){
         SharedPreferences.Editor editor =  getShared().edit();
-        editor.putString(dataNonbre, dataValue);
+        editor.putString(dataValue, dataKey);
         editor.commit();
     }
-    public static String getNombre(String dataNombre) {
-        return getShared().getString(dataNombre, null);
+    public static String getDataPreference(String dataValue) {
+        return getShared().getString(dataValue, null);
     }
 }

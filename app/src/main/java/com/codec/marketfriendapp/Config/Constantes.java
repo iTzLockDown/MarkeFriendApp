@@ -10,4 +10,6 @@ public class Constantes {
     //CONSTANTES PREFERENCES
 
     public static final String  PREF_USER = "PREF_USER";
+    public static final String  PREF_LATITUD = "PREF_LATITUD";
+    public static final String  PREF_LONGITUD = "PREF_LONGITUD";
 }

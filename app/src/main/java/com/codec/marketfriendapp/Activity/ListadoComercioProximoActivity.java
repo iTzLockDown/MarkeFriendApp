@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.codec.marketfriendapp.Adapter.ListaComercioProximoAdapter;
 import com.codec.marketfriendapp.Config.Constantes;
+import com.codec.marketfriendapp.Config.SharedPreferenceManager;
 import com.codec.marketfriendapp.R;
 import com.codec.marketfriendapp.Response.ResponseListaComercio;
 import com.codec.marketfriendapp.Response.ResponseListaMarket;
@@ -48,6 +49,8 @@ public class ListadoComercioProximoActivity extends AppCompatActivity implements
     RecyclerView recyclerView;
     ListaComercioProximoAdapter adapterListaComercioProximo;
 
+    double gpsLatitud = Double.parseDouble(SharedPreferenceManager.getDataPreference(Constantes.PREF_LATITUD));
+    double gpsLongitud = Double.parseDouble(SharedPreferenceManager.getDataPreference(Constantes.PREF_LONGITUD));
     //endregion
 
 
@@ -57,7 +60,7 @@ public class ListadoComercioProximoActivity extends AppCompatActivity implements
         retrofitInit();
         RegistroObjeto();
         ListenerObjeto();
-        MuestraUbicacion();
+        cargarComercioProximo(gpsLatitud, gpsLongitud);
     }
     //endregion
 
@@ -108,64 +111,7 @@ public class ListadoComercioProximoActivity extends AppCompatActivity implements
     }
 
 
-    public void MuestraUbicacion()
-    {
-        LocationManager locationManager = (LocationManager)ListadoComercioProximoActivity.this.getSystemService(Context.LOCATION_SERVICE);
 
-        LocationListener locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                double latitud = location.getLatitude();
-                double longitud = location.getLongitude();
-
-                cargarComercioProximo(latitud, longitud);
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-
-            }
-
-        };
-
-        int permissionCheck = ContextCompat.checkSelfPermission(ListadoComercioProximoActivity.this, Manifest.permission.ACCESS_FINE_LOCATION);
-
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, Constantes.TIEMPO_UPDATE, Constantes.MIN_DISTANCIAUPDATES , locationListener);
-        RequierePermidoGPS();
-    }
-    public void RequierePermidoGPS()
-    {
-        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
-
-        if (permissionCheck== PackageManager.PERMISSION_DENIED){
-            if (ActivityCompat.shouldShowRequestPermissionRationale(ListadoComercioProximoActivity.this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)){}
-        } else
-        {
-            ActivityCompat.requestPermissions(ListadoComercioProximoActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-
-            } else {
-                ActivityCompat.requestPermissions(
-                        this, new String[] { android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION }, 1222);
-            }
-        }
-
-    }
     //endregion
 
     //region Activitys

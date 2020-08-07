@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         {
                             Toast.makeText(LoginActivity.this, "¡Sesión iniciada correctamente!"+response.body().getUsuario(), Toast.LENGTH_SHORT).show();
 
-                            SharedPreferenceManager.setNombre(Constantes.PREF_USER, "hachiko");
+                            SharedPreferenceManager.setDataPreference(Constantes.PREF_USER, "hachiko");
 
 
                             Intent i = new Intent(LoginActivity.this, PrincipalActivity.class);

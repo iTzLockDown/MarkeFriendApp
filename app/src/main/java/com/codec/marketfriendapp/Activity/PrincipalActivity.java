@@ -220,6 +220,8 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
                 tvLongitud.setText(""+location.getLongitude());
                 latitud = location.getLatitude();
                 longitud = location.getLongitude();
+                SharedPreferenceManager.setDataPreference(Constantes.PREF_LATITUD, latitud.toString());
+                SharedPreferenceManager.setDataPreference(Constantes.PREF_LONGITUD, longitud.toString());
                 CargarComercioTop(latitud, longitud);
             }
 
@@ -288,7 +290,7 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
         InicializaMetodo();
-        String nombre = SharedPreferenceManager.getNombre(Constantes.PREF_USER);
+        String nombre = SharedPreferenceManager.getDataPreference(Constantes.PREF_USER);
         tvNombreUsuario.setText(nombre);
 
     }
