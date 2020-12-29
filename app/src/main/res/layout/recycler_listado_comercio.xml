@@ -27,11 +27,11 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="80dp"
         android:numStars="5"
-        app:layout_constraintStart_toEndOf="@+id/imgComercioFavorito"
+        app:layout_constraintStart_toEndOf="@+id/ivComercioFavorito"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imgComercioFavorito"
+        android:id="@+id/ivComercioFavorito"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="16dp"
@@ -79,7 +79,7 @@
         android:text="Bodega"
         android:textSize="12sp"
         android:textStyle="italic"
-        app:layout_constraintStart_toEndOf="@+id/imgComercioFavorito"
+        app:layout_constraintStart_toEndOf="@+id/ivComercioFavorito"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView

@@ -12,14 +12,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.codec.marketfriendapp.Activity.CalificarComercioActivity;
 import com.codec.marketfriendapp.Activity.DetalleComercioActivity;
+import com.codec.marketfriendapp.Config.ConfiguracionRetrofit;
+import com.codec.marketfriendapp.Config.Globales;
+import com.codec.marketfriendapp.Config.MarketFriend;
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Response.ResponseListaMarket;
+import com.codec.marketfriendapp.Models.Response.ResponseListaMarket;
 
 import java.util.List;
 
 public class ListaComercioProximoAdapter extends RecyclerView.Adapter<ListaComercioProximoAdapter.MyViewHolder> {
+    private Globales global = new Globales();
     private Context context;
     private List<ResponseListaMarket> listaComercio;
 
@@ -36,13 +41,21 @@ public class ListaComercioProximoAdapter extends RecyclerView.Adapter<ListaComer
 
     @Override
     public void onBindViewHolder(@NonNull final ListaComercioProximoAdapter.MyViewHolder holder, final int position) {
-        holder.textViewNombre.setText(listaComercio.get(position).getNombre());
+        String comercio = global.wordFirstCap(listaComercio.get(position).getNombre());
+        holder.textViewNombre.setText(comercio);
         holder.tvTelefono.setText(listaComercio.get(position).getTelefono());
         holder.tvCategoria.setText(listaComercio.get(position).getCategoria());
         holder.rbCalificacion.setProgress(Integer.valueOf(listaComercio.get(position).getCalidadAtencion()));
         holder.tvIdComercio.setText(listaComercio.get(position).getCodigo().toString());
 
-
+        if(listaComercio.get(position).getImagen()==null)
+        {
+            Glide.with(MarketFriend.getContext()).load(ConfiguracionRetrofit.API_MARKETFRIEND_IMAGEN_URL+listaComercio.get(position).getImagen()).into(holder.ivImagenComercio);
+        }
+        else
+        {
+            Glide.with(MarketFriend.getContext()).load(ConfiguracionRetrofit.API_MARKETFRIEND_IMAGEN_URL+listaComercio.get(position).getImagen()).into(holder.ivImagenComercio);
+        }
         holder.textViewNombre.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -55,6 +68,8 @@ public class ListaComercioProximoAdapter extends RecyclerView.Adapter<ListaComer
                 clasificaComercio.putExtra("Codigo",  listaComercio.get(position).getCodigo().toString() );
                 clasificaComercio.putExtra("CalidadProducto",  listaComercio.get(position).getCalidadAtencion() );
                 context.startActivity(clasificaComercio);
+
+
 
             }
         });
@@ -81,7 +96,7 @@ public class ListaComercioProximoAdapter extends RecyclerView.Adapter<ListaComer
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textViewNombre, tvTelefono, tvCategoria, tvIdComercio;
         RatingBar rbCalificacion;
-        ImageView ivDetalle;
+        ImageView ivDetalle, ivImagenComercio;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -91,6 +106,7 @@ public class ListaComercioProximoAdapter extends RecyclerView.Adapter<ListaComer
             rbCalificacion = (RatingBar) itemView.findViewById(R.id.rbCalificacion);
             tvIdComercio = itemView.findViewById(R.id.tvIdComercio);
             ivDetalle = (ImageView)itemView.findViewById(R.id.ivDetalle);
+            ivImagenComercio = (ImageView) itemView.findViewById(R.id.ivComercioFavorito);
         }
     }
 }

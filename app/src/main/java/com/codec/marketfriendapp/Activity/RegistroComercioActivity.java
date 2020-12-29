@@ -25,8 +25,8 @@ import android.widget.Toast;
 
 
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Request.RequestRegistroComercio;
-import com.codec.marketfriendapp.Response.ResponseRegistroComercio;
+import com.codec.marketfriendapp.Models.Request.RequestRegistroComercio;
+import com.codec.marketfriendapp.Models.Response.ResponseRegistroComercio;
 import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
 import com.codec.marketfriendapp.Retrofit.ServiceRetrofit;
 

@@ -1,4 +1,4 @@
-package com.codec.marketfriendapp.Request;
+package com.codec.marketfriendapp.Models.Request;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 public class RequestCalificaComercio {

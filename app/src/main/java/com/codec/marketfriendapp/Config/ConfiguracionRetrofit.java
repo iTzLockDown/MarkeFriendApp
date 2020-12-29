@@ -1,5 +1,6 @@
 package com.codec.marketfriendapp.Config;
 
 public class ConfiguracionRetrofit {
-    public static final String API_MARKETFRIEND_BASE_URL="http://192.168.1.7:8500";
+    public static final String API_MARKETFRIEND_BASE_URL="https://marketfriendapp.azurewebsites.net";
+    public static final String API_MARKETFRIEND_IMAGEN_URL="http://192.168.1.3:8500/api/upload/img/";
 }

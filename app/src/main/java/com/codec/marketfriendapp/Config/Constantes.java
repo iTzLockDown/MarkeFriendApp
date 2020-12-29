@@ -12,4 +12,7 @@ public class Constantes {
     public static final String  PREF_USER = "PREF_USER";
     public static final String  PREF_LATITUD = "PREF_LATITUD";
     public static final String  PREF_LONGITUD = "PREF_LONGITUD";
+
+    public static final String  PREF_USUARIO = "PREF_USUARIO";
+    public static final String  PREF_IDENTIFICADOR = "PREF_IDENTIFICADOR";
 }

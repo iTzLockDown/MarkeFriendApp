@@ -21,7 +21,7 @@
         android:id="@+id/imagenUsuario"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="84dp"
         android:src="@drawable/userpic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -29,30 +29,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/nombreUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:id="@+id/tvNombreUsuario"
+        android:layout_width="232dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
         android:text="Wilhelm Ruiz"
-        android:textColor="#FFF"
-        android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="@+id/imagenUsuario"
-        app:layout_constraintStart_toStartOf="@+id/imagenUsuario"
+        android:textColor="#172646"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagenUsuario" />
 
     <Button
         android:id="@+id/btnClasificar"
         android:layout_width="194dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:background="@drawable/bgbtnclasifica"
-        android:layout_marginTop="15dp"
         android:text="Mi Perfil"
         android:textAllCaps="false"
         android:textColor="#fff"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/nombreUsuario"
-        app:layout_constraintStart_toStartOf="@+id/nombreUsuario"
-        app:layout_constraintTop_toBottomOf="@+id/nombreUsuario" />
+        app:layout_constraintEnd_toEndOf="@+id/tvNombreUsuario"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="@+id/tvNombreUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/tvNombreUsuario" />
 
     <TextView
         android:id="@+id/perfilSetting"

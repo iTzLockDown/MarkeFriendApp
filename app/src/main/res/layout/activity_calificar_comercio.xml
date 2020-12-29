@@ -28,43 +28,46 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtCategoria"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvCategoria"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="24dp"
         android:lineSpacingExtra="6dp"
+        android:layout_marginTop="5dp"
         android:text="BODEGA"
-        android:textAlignment="center"
         android:textColor="#131920"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/ivComercio" />
 
 
     <TextView
-        android:id="@+id/negocioTitulo"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvNegocioTitulo"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:text=" 'Don Pepito'"
-
         android:textColor="#172646"
-        android:textSize="35sp"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCategoria" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCategoria" />
 
     <ImageView
-        android:id="@+id/imgComercio"
-        android:layout_width="250dp"
+        android:id="@+id/ivComercio"
+        android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:src="@drawable/conv4"
-        app:layout_constraintEnd_toEndOf="@+id/negocioTitulo"
-        app:layout_constraintStart_toStartOf="@+id/negocioTitulo"
-        app:layout_constraintTop_toBottomOf="@+id/negocioTitulo" />
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/tambo"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
-        android:id="@+id/negocioDescripcion"
+        android:id="@+id/tvNegocioDescripcion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lineSpacingExtra="6dp"
@@ -72,9 +75,9 @@
         android:textAlignment="center"
         android:textColor="#A1A1A1"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/imgComercio"
-        app:layout_constraintStart_toStartOf="@+id/imgComercio"
-        app:layout_constraintTop_toBottomOf="@+id/imgComercio" />
+        app:layout_constraintEnd_toEndOf="@+id/tvNegocioTitulo"
+        app:layout_constraintStart_toStartOf="@+id/tvNegocioTitulo"
+        app:layout_constraintTop_toBottomOf="@+id/tvNegocioTitulo" />
 
 
     <RatingBar
@@ -83,14 +86,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:theme="@style/RatingBar.Yellow"
-        app:layout_constraintEnd_toEndOf="@+id/negocioDescripcion"
-        app:layout_constraintStart_toStartOf="@+id/negocioDescripcion"
-        app:layout_constraintTop_toBottomOf="@+id/negocioDescripcion" />
+        app:layout_constraintEnd_toEndOf="@+id/tvNegocioDescripcion"
+        app:layout_constraintStart_toStartOf="@+id/tvNegocioDescripcion"
+        app:layout_constraintTop_toBottomOf="@+id/tvNegocioDescripcion" />
 
     <EditText
-        android:id="@+id/txtDescripcion"
+        android:id="@+id/etDescripcion"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="80dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         android:hint="Describeme un poco..."
@@ -104,11 +107,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bgbtnclasifica"
+        android:layout_marginTop="55dp"
         android:text="Califica"
         android:textColor="#DBFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDescripcion" />
+        app:layout_constraintTop_toBottomOf="@+id/etDescripcion" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,8 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Request.RequestRegistroUsuario;
-import com.codec.marketfriendapp.Response.ResponseRegistroUsuario;
+import com.codec.marketfriendapp.Models.Request.RequestRegistroUsuario;
+import com.codec.marketfriendapp.Models.Response.ResponseRegistroUsuario;
 import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
 import com.codec.marketfriendapp.Retrofit.ServiceRetrofit;
 import java.util.Random;

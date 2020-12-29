@@ -1,16 +1,13 @@
-package com.codec.marketfriendapp.Response;
+package com.codec.marketfriendapp.Models.Response;
 
-
-
-import com.codec.marketfriendapp.Models.Usuario;
+import com.codec.marketfriendapp.Models.Comercio;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+public class ResponseRegistroComercio {
 
-public class ResponseRegistroUsuario {
-
-    @SerializedName("usuario")
+    @SerializedName("comercio")
     @Expose
-    private Usuario usuario;
+    private Comercio comercio;
     @SerializedName("mensaje")
     @Expose
     private String mensaje;
@@ -19,26 +16,26 @@ public class ResponseRegistroUsuario {
      * No args constructor for use in serialization
      *
      */
-    public ResponseRegistroUsuario() {
+    public ResponseRegistroComercio() {
     }
 
     /**
      *
-     * @param usuario
+     * @param comercio
      * @param mensaje
      */
-    public ResponseRegistroUsuario(Usuario usuario, String mensaje) {
+    public ResponseRegistroComercio(Comercio comercio, String mensaje) {
         super();
-        this.usuario = usuario;
+        this.comercio = comercio;
         this.mensaje = mensaje;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Comercio getComercio() {
+        return comercio;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setComercio(Comercio comercio) {
+        this.comercio = comercio;
     }
 
     public String getMensaje() {

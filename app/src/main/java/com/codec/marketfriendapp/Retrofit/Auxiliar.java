@@ -1,6 +1,6 @@
 package com.codec.marketfriendapp.Retrofit;
 
-import com.codec.marketfriendapp.Response.ResponseListaComentario;
+import com.codec.marketfriendapp.Models.Response.ResponseListaComentario;
 
 import java.util.List;
 

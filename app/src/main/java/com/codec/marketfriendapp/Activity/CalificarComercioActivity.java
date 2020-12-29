@@ -6,16 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Request.RequestCalificaComercio;
-import com.codec.marketfriendapp.Response.ResponseCalificaComercio;
-import com.codec.marketfriendapp.Response.ResponseListaComercio;
-import com.codec.marketfriendapp.Response.ResponseMensajeCalificacion;
+import com.codec.marketfriendapp.Models.Request.RequestCalificaComercio;
+import com.codec.marketfriendapp.Models.Response.ResponseMensajeCalificacion;
 import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
 import com.codec.marketfriendapp.Retrofit.ServiceRetrofit;
 
@@ -63,9 +60,9 @@ public class CalificarComercioActivity extends AppCompatActivity implements View
     //region Metodos
     public void RegistroObjeto()
     {
-        negocioTitulo = findViewById(R.id.negocioTitulo);
-        txtCategoria = findViewById(R.id.txtCategoria);
-        txtDescripcion = findViewById(R.id.txtDescripcion);
+        negocioTitulo = findViewById(R.id.tvNegocioTitulo);
+        txtCategoria = findViewById(R.id.tvCategoria);
+        txtDescripcion = findViewById(R.id.etDescripcion);
         rbCalificacion = findViewById(R.id.rbCalificacion);
         tvCodigoComercio = findViewById(R.id.tvCodigoComercio);
         btnRegistrarCalificacionComercio = findViewById(R.id.btnRegistrarCalificacionComercio);
@@ -82,7 +79,7 @@ public class CalificarComercioActivity extends AppCompatActivity implements View
         String comentarioAtencion = txtDescripcion.getText().toString();
         Integer precioProducto = 10;
         Integer tiempoAtencion =10;
-        Integer usuario = 2;
+        Integer usuario = 1;
 
 
         if (comentarioAtencion.isEmpty())

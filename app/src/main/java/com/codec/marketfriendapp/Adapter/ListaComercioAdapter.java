@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.codec.marketfriendapp.Activity.DetalleComercioActivity;
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Response.ResponseListaComercio;
+import com.codec.marketfriendapp.Models.Response.ResponseListaComercio;
 
 import java.util.List;
 

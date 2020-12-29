@@ -1,4 +1,4 @@
-package com.codec.marketfriendapp.Response;
+package com.codec.marketfriendapp.Models.Response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 public class ResponseListaComentario {

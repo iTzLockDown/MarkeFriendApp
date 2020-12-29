@@ -1,19 +1,9 @@
 package com.codec.marketfriendapp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -23,8 +13,7 @@ import com.codec.marketfriendapp.Adapter.ListaComercioProximoAdapter;
 import com.codec.marketfriendapp.Config.Constantes;
 import com.codec.marketfriendapp.Config.SharedPreferenceManager;
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Response.ResponseListaComercio;
-import com.codec.marketfriendapp.Response.ResponseListaMarket;
+import com.codec.marketfriendapp.Models.Response.ResponseListaMarket;
 import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
 import com.codec.marketfriendapp.Retrofit.ServiceRetrofit;
 
@@ -61,6 +50,7 @@ public class ListadoComercioProximoActivity extends AppCompatActivity implements
         RegistroObjeto();
         ListenerObjeto();
         cargarComercioProximo(gpsLatitud, gpsLongitud);
+        CargarPreferences();
     }
     //endregion
 
@@ -110,7 +100,11 @@ public class ListadoComercioProximoActivity extends AppCompatActivity implements
         });
     }
 
-
+    public void CargarPreferences()
+    {
+        String usuario =  SharedPreferenceManager.getDataPreference(Constantes.PREF_USUARIO);
+        tvNombreUsuario.setText(usuario);
+    }
 
     //endregion
 

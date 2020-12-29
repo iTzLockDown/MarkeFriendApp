@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.codec.marketfriendapp.Config.Globales;
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Response.ResponseListaComentario;
+import com.codec.marketfriendapp.Models.Response.ResponseListaComentario;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class ListadoComentarioAdapter extends RecyclerView.Adapter<ListadoComent
 
     @Override
     public void onBindViewHolder(@NonNull final ListadoComentarioAdapter.MyViewHolder holder, final int position) {
-        holder.tvComentario.setText(responseListaComentarios.get(position).getComentario());
+        holder.tvComentario.setText(responseListaComentarios.get(position).getComentario().replaceAll("\n", "").replace("\r",""));
         String usuario = global.wordFirstCap(responseListaComentarios.get(position).getUsuario());
         holder.tvUsuario.setText(usuario);
         holder.tvFecha.setText(responseListaComentarios.get(position).getFecha());

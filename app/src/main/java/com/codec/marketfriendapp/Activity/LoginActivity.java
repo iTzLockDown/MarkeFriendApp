@@ -2,9 +2,7 @@ package com.codec.marketfriendapp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,14 +10,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.codec.marketfriendapp.Config.Constantes;
-import com.codec.marketfriendapp.Config.MarketFriend;
-import com.codec.marketfriendapp.Config.SharedPreferenceManager;
+import com.auth0.android.jwt.Claim;
+import com.auth0.android.jwt.JWT;
+import com.codec.marketfriendapp.Models.Response.ResponseLogin;
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Request.RequestLoginUsuario;
-import com.codec.marketfriendapp.Response.ResponseRegistroUsuario;
+import com.codec.marketfriendapp.Models.Request.RequestLogin;
 import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
 import com.codec.marketfriendapp.Retrofit.ServiceRetrofit;
+
+import java.io.UnsupportedEncodingException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,8 +27,8 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener  {
 
     //region Parametros y Variables
-    EditText etEmail, etPassword;
-    TextView tvOlvidePassword, tvRegistrar;
+    EditText etUsuario, etContrasenia;
+    TextView tvOlvideContraseia, tvRegistrar;
     Button btnIngresarSistema;
     ClienteRetrofit clienteRetrofit;
     ServiceRetrofit serviceRetrofit;
@@ -55,9 +54,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void RegistroObjeto()
     {
-         etEmail = findViewById(R.id.etEmail);
-         etPassword = findViewById(R.id.etPassword);
-         tvOlvidePassword= findViewById(R.id.tvOlvidePassword);
+         etUsuario = findViewById(R.id.etUsuario);
+         etContrasenia = findViewById(R.id.etContrasenia);
+         tvOlvideContraseia= findViewById(R.id.tvOlvideContrasenia);
          tvRegistrar= findViewById(R.id.tvRegistrar);
          btnIngresarSistema = findViewById(R.id.btnIngresarSistema);
     }
@@ -68,43 +67,35 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void AutentificarUsuario()
     {
-            String  email = etEmail.getText().toString();
-            String clave = etPassword.getText().toString();
+           String  usuario = etUsuario.getText().toString();
+           String contrasenia = etContrasenia.getText().toString();
 
-            if (email.isEmpty())
+
+            if (usuario.isEmpty())
             {
-                etEmail.setError("Complete el Email, campo requerido.");
-            }else if (clave.isEmpty())
+                etUsuario.setError("Complete el Email, campo requerido.");
+            }else if (contrasenia.isEmpty())
             {
-                etPassword.setError("Ingrese la Contraseña, campo requerido.");
-            }else
-            {
-                RequestLoginUsuario requestUsuario = new RequestLoginUsuario( clave,email);
-                Call<ResponseRegistroUsuario> call = serviceRetrofit.doLogin(requestUsuario);
-                call.enqueue(new Callback<ResponseRegistroUsuario>() {
+                etContrasenia.setError("Ingrese la Contraseña, campo requerido.");
+            }else {
+                RequestLogin requestUsuario = new RequestLogin(usuario, contrasenia, "");
+                Call<ResponseLogin> call = serviceRetrofit.doLoginVerTwo(requestUsuario);
+
+                call.enqueue(new Callback<ResponseLogin>() {
                     @Override
-                    public void onResponse(Call<ResponseRegistroUsuario> call, Response<ResponseRegistroUsuario> response) {
-                        if (response.isSuccessful())
-                        {
-                            Toast.makeText(LoginActivity.this, "¡Sesión iniciada correctamente!"+response.body().getUsuario(), Toast.LENGTH_SHORT).show();
-
-                            SharedPreferenceManager.setDataPreference(Constantes.PREF_USER, "hachiko");
-
-
-                            Intent i = new Intent(LoginActivity.this, PrincipalActivity.class);
-
-                            startActivity(i);
-                            finish();
-
-                        }else
-                        {
-                            Toast.makeText(LoginActivity.this, "¡Algo ha ido mal, revise su información.!", Toast.LENGTH_SHORT).show();
+                    public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
+                        if(response.isSuccessful()){
+                            JWT parsedJWT = new JWT(response.body().getToken());
+                            Claim subscriptionMetaData = parsedJWT.getClaim("sub");
+                            String parsedValue = subscriptionMetaData.asString();
+                            Toast.makeText(LoginActivity.this, "Bienvenidos",Toast.LENGTH_LONG).show();
                         }
+
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseRegistroUsuario> call, Throwable t) {
-                        Toast.makeText(LoginActivity.this, "¡Algo ha ido mal, revise su información."+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    public void onFailure(Call<ResponseLogin> call, Throwable t) {
+
                     }
                 });
 

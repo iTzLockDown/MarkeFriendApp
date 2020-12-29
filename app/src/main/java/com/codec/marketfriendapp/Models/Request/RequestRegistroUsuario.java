@@ -1,4 +1,4 @@
-package com.codec.marketfriendapp.Request;
+package com.codec.marketfriendapp.Models.Request;
 
 
 

@@ -3,13 +3,10 @@ package com.codec.marketfriendapp.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -23,13 +20,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.codec.marketfriendapp.Adapter.ListadoComentarioAdapter;
 import com.codec.marketfriendapp.Config.Constantes;
 import com.codec.marketfriendapp.Config.SharedPreferenceManager;
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Response.ResponseListaComentario;
-import com.codec.marketfriendapp.Response.ResponseListaComercio;
-import com.codec.marketfriendapp.Response.ResponseListaMarket;
+import com.codec.marketfriendapp.Models.Response.ResponseListaComercio;
+import com.codec.marketfriendapp.Models.Response.ResponseListaMarket;
 import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
 import com.codec.marketfriendapp.Retrofit.ServiceRetrofit;
 import com.google.android.gms.maps.model.LatLng;
@@ -71,6 +66,7 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         retrofitInit();
         RegistroObjeto();
         ListenerObjeto();
+        AsignaSharedPreference();
         RequierePermidoGPS();
         MuestraUbicacion();
 
@@ -280,6 +276,10 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
 
     }
 
+    private void AsignaSharedPreference() {
+        String usuario =  SharedPreferenceManager.getDataPreference(Constantes.PREF_USUARIO);
+        tvNombreUsuario.setText(usuario);
+    }
     //endregion
 
     //regionh Activitys
@@ -290,8 +290,6 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
         InicializaMetodo();
-        String nombre = SharedPreferenceManager.getDataPreference(Constantes.PREF_USER);
-        tvNombreUsuario.setText(nombre);
 
     }
 

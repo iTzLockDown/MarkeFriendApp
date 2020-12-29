@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.codec.marketfriendapp.Adapter.ListaComercioAdapter;
 import com.codec.marketfriendapp.R;
-import com.codec.marketfriendapp.Response.ResponseListaComercio;
+import com.codec.marketfriendapp.Models.Response.ResponseListaComercio;
 import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
 import com.codec.marketfriendapp.Retrofit.ServiceRetrofit;
 

@@ -27,13 +27,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/nombreUsuario"
+        android:id="@+id/tvNombreUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="Wilhelm Ruiz"
-        android:textColor="#FFF"
-        android:textSize="28sp"
+        android:textColor="#172646"
+        android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="@+id/imagenUsuario"
         app:layout_constraintStart_toStartOf="@+id/imagenUsuario"
         app:layout_constraintTop_toBottomOf="@+id/imagenUsuario" />
@@ -45,10 +45,10 @@
         android:layout_marginTop="0dp"
         android:text="CREDITOS: 150 MarketCoins"
         android:textColor="#fff"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/nombreUsuario"
-        app:layout_constraintStart_toStartOf="@+id/nombreUsuario"
-        app:layout_constraintTop_toBottomOf="@+id/nombreUsuario" />
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvNombreUsuario"
+        app:layout_constraintStart_toStartOf="@+id/tvNombreUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/tvNombreUsuario" />
 
     <TextView
         android:id="@+id/tvComercio"
