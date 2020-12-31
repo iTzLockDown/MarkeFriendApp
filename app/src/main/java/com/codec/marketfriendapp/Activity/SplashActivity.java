@@ -27,8 +27,8 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                String usuario =  SharedPreferenceManager.getDataPreference(Constantes.PREF_USUARIO);
-                if(usuario!=null){
+                String token =  SharedPreferenceManager.getDataPreference(Constantes.PREF_TOKEN);
+                if(token!=null){
                     Intent intent = new Intent(SplashActivity.this, PrincipalActivity.class);
                     startActivity(intent);
                     finish();

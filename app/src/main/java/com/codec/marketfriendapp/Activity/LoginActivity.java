@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.auth0.android.jwt.Claim;
 import com.auth0.android.jwt.JWT;
+import com.codec.marketfriendapp.Config.Constantes;
+import com.codec.marketfriendapp.Config.SharedPreferenceManager;
 import com.codec.marketfriendapp.Models.Response.ResponseLogin;
 import com.codec.marketfriendapp.R;
 import com.codec.marketfriendapp.Models.Request.RequestLogin;
@@ -19,6 +21,7 @@ import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
 import com.codec.marketfriendapp.Retrofit.ServiceRetrofit;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -85,17 +88,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
                         if(response.isSuccessful()){
-                            JWT parsedJWT = new JWT(response.body().getToken());
-                            Claim subscriptionMetaData = parsedJWT.getClaim("sub");
-                            String parsedValue = subscriptionMetaData.asString();
-                            Toast.makeText(LoginActivity.this, "Bienvenidos",Toast.LENGTH_LONG).show();
+                            SharedPreferenceManager.setDataPreference(Constantes.PREF_TOKEN, response.body().getToken());
+                            Toast.makeText(LoginActivity.this, "Bienvenido a Market Friend!",Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(LoginActivity.this, PrincipalActivity.class);
+                            startActivity(i);
+                        }else{
+                            Toast.makeText(LoginActivity.this, "Error, vuelva a intentar.",Toast.LENGTH_LONG).show();
                         }
 
                     }
 
                     @Override
                     public void onFailure(Call<ResponseLogin> call, Throwable t) {
-
+                        Toast.makeText(LoginActivity.this , "Error con la respuesta del servidor. Error "+t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 

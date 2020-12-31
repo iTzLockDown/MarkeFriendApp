@@ -15,4 +15,5 @@ public class Constantes {
 
     public static final String  PREF_USUARIO = "PREF_USUARIO";
     public static final String  PREF_IDENTIFICADOR = "PREF_IDENTIFICADOR";
+    public static final String  PREF_TOKEN ="PREF_TOKEN";
 }
