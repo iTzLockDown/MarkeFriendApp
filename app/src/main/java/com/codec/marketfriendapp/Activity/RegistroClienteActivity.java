@@ -14,6 +14,7 @@ import com.codec.marketfriendapp.Models.Request.RequestRegistroUsuario;
 import com.codec.marketfriendapp.Models.Response.ResponseRegistroUsuario;
 import com.codec.marketfriendapp.Retrofit.ClienteRetrofit;
 import com.codec.marketfriendapp.Retrofit.ServiceRetrofit;
+
 import java.util.Random;
 
 import retrofit2.Call;

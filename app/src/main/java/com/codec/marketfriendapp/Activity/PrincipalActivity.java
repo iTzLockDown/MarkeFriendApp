@@ -20,8 +20,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.auth0.android.jwt.Claim;
+import com.auth0.android.jwt.JWT;
 import com.codec.marketfriendapp.Config.Constantes;
 import com.codec.marketfriendapp.Config.SharedPreferenceManager;
+import com.codec.marketfriendapp.Models.Response.ClienteResponse;
 import com.codec.marketfriendapp.R;
 import com.codec.marketfriendapp.Models.Response.ResponseListaComercio;
 import com.codec.marketfriendapp.Models.Response.ResponseListaMarket;
@@ -40,9 +43,6 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
 
 
     //regiob Paranetros y Variables
-
-
-
     TextView tvNombreUsuario, tvBilleteraUsuario, tvNegocioTitulo, tvNumeroComentario, tvLatitud, tvLongitud;
     ImageView ivCalificar,ivVerMapa, ivListado, ivComercio;
     Button btnDetalle;
@@ -67,9 +67,9 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         RegistroObjeto();
         ListenerObjeto();
         AsignaSharedPreference();
+        CargarCliente();
         RequierePermidoGPS();
         MuestraUbicacion();
-
     }
 
 
@@ -277,8 +277,38 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void AsignaSharedPreference() {
-        String usuario =  SharedPreferenceManager.getDataPreference(Constantes.PREF_USUARIO);
-        tvNombreUsuario.setText(usuario);
+
+        JWT parsedJWT = new JWT(SharedPreferenceManager.getDataPreference(Constantes.PREF_TOKEN));
+        Claim subscriptionMetaData = parsedJWT.getClaim("sub");
+        String parsedValue = subscriptionMetaData.asString();
+        SharedPreferenceManager.setDataPreference(Constantes.PREF_IDENTIFICADOR, parsedValue);
+    }
+    public void CargarCliente()
+    {
+        tvNombreUsuario.setText(SharedPreferenceManager.getDataPreference(Constantes.PREF_IDENTIFICADOR));
+        Call<ClienteResponse>  call = serviceRetrofit.doClienteTraerUno(SharedPreferenceManager.getDataPreference(Constantes.PREF_IDENTIFICADOR));
+        call.enqueue(new Callback<ClienteResponse>() {
+            @Override
+            public void onResponse(Call<ClienteResponse> call, Response<ClienteResponse> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(PrincipalActivity.this , response.body().toString(), Toast.LENGTH_SHORT).show();
+                    SharedPreferenceManager.setDataPreference(Constantes.PREF_USUARIO, response.body().getDatos());
+                    String usuario = SharedPreferenceManager.getDataPreference(Constantes.PREF_USUARIO);
+
+                    tvNombreUsuario.setText(usuario);
+                }
+                else{
+                    tvNombreUsuario.setText("no la vemos");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ClienteResponse> call, Throwable t) {
+                tvNombreUsuario.setText(t.getMessage());
+            }
+        });
+
     }
     //endregion
 
@@ -290,7 +320,7 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
         InicializaMetodo();
-
+        CargarCliente();
     }
 
     @Override

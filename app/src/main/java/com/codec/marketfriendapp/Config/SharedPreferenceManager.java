@@ -21,4 +21,10 @@ public class SharedPreferenceManager {
     public static String getDataPreference(String dataValue) {
         return getShared().getString(dataValue, null);
     }
+
+    public static void deleteDataPreference(){
+        SharedPreferences.Editor editor =  getShared().edit();
+        editor.clear();
+        editor.commit();
+    }
 }

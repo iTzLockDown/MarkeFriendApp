@@ -148,11 +148,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:text="Ayuda"
+        android:text="Salir"
         android:textColor="#172646"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgNuevoComercio"
+        app:layout_constraintStart_toEndOf="@+id/ivSalir"
         app:layout_constraintTop_toBottomOf="@+id/imgLinea2" />
 
     <TextView
@@ -164,16 +164,16 @@
         android:textColor="#818181"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgNuevoComercio"
-        app:layout_constraintTop_toBottomOf="@+id/txtnuevoComercio" />
+        app:layout_constraintStart_toEndOf="@+id/ivSalir"
+        app:layout_constraintTop_toBottomOf="@+id/ivSalir" />
 
     <ImageView
-        android:id="@+id/imgNuevoComercio"
+        android:id="@+id/ivSalir"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/ic_help_outline_black_24dp"
+        android:src="@drawable/ic_baseline_exit_to_app_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLinea2" />
 

@@ -4,6 +4,7 @@ import com.codec.marketfriendapp.Models.Request.RequestCalificaComercio;
 import com.codec.marketfriendapp.Models.Request.RequestLogin;
 import com.codec.marketfriendapp.Models.Request.RequestRegistroComercio;
 import com.codec.marketfriendapp.Models.Request.RequestRegistroUsuario;
+import com.codec.marketfriendapp.Models.Response.ClienteResponse;
 import com.codec.marketfriendapp.Models.Response.ResponseListaComentario;
 import com.codec.marketfriendapp.Models.Response.ResponseListaComercio;
 import com.codec.marketfriendapp.Models.Response.ResponseListaMarket;
@@ -11,7 +12,6 @@ import com.codec.marketfriendapp.Models.Response.ResponseLogin;
 import com.codec.marketfriendapp.Models.Response.ResponseMensajeCalificacion;
 import com.codec.marketfriendapp.Models.Response.ResponseRegistroComercio;
 import com.codec.marketfriendapp.Models.Response.ResponseRegistroUsuario;
-import com.codec.marketfriendapp.Models.Response.ResponseUser;
 
 import java.util.List;
 
@@ -20,6 +20,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ServiceRetrofit {
     @GET("/api/listaComercio")
@@ -51,4 +52,6 @@ public interface ServiceRetrofit {
     @GET("/api/listaComercioProximo/{latitud}/{longitud}")
     Call<List<ResponseListaMarket>> doListaComercioProximo(@Path("latitud") Double gpsLatitud, @Path("longitud") Double gpsLongitud);
 
+    @GET("/api/cliente/cliente")
+    Call<ClienteResponse> doClienteTraerUno(@Query("codigoCliente") String codigoCliente);
 }

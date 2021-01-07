@@ -3,6 +3,8 @@ package com.codec.marketfriendapp.Retrofit;
 
 import com.codec.marketfriendapp.Config.ConfiguracionRetrofit;
 import com.codec.marketfriendapp.Config.HeaderAuth;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 
@@ -38,12 +40,14 @@ public class ClienteRetrofit {
                                                 }
                                         )
                                         .build();
-
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
         retrofit = new Retrofit
                 .Builder()
                 .baseUrl(ConfiguracionRetrofit.API_MARKETFRIEND_BASE_URL)
                 .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         serviceRetrofit = retrofit.create(ServiceRetrofit.class);
     }

@@ -34,7 +34,7 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="30dp"
-        android:text="Wilhelm Ruiz"
+        android:text="Usuario"
         android:textColor="#FFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
