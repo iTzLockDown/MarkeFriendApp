@@ -22,32 +22,11 @@ public class ClienteRetrofit {
     private Retrofit retrofit;
     public ClienteRetrofit()
     {
-        OkHttpClient okHttpClient = new OkHttpClient
-                                        .Builder()
-                                        .addInterceptor(
-                                                new Interceptor() {
-                                                    @Override
-                                                    public Response intercept(Chain chain) throws IOException {
-                                                        Request original = chain.request();
 
-                                                        Request.Builder requeBuilder = original
-                                                                                        .newBuilder()
-                                                                                        .addHeader("Authorization", HeaderAuth.AUTH_HEADER);
-
-                                                        Request request = requeBuilder.build();
-                                                        return chain.proceed(request);
-                                                    }
-                                                }
-                                        )
-                                        .build();
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
         retrofit = new Retrofit
                 .Builder()
                 .baseUrl(ConfiguracionRetrofit.API_MARKETFRIEND_BASE_URL)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
         serviceRetrofit = retrofit.create(ServiceRetrofit.class);
     }

@@ -33,6 +33,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.PruebaActivity"></activity>
         <activity android:name=".Activity.AyudaActivity" />
         <activity android:name=".Activity.ListadoComercioProximoActivity" />
 
@@ -59,7 +60,6 @@
         <activity android:name=".Activity.RegistroComercioActivity" />
         <activity android:name=".Activity.PrincipalActivity" />
         <activity android:name=".Activity.RegistroClienteActivity" />
-
         <activity android:name=".Activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,9 +67,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.LoginActivity"/>
-
-
+        <activity android:name=".Activity.LoginActivity" />
     </application>
 
 </manifest>
